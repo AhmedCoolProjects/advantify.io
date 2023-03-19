@@ -27,19 +27,32 @@ export function FormInput({
       <label className="label">
         <span className="label-text">{label}</span>
       </label>
-      <input
-        required={required}
-        type={type}
-        placeholder={placeholder}
-        value={info[value]}
-        onChange={(e) =>
-          setInfo({
-            ...info,
-            [value]: e.target.value,
-          })
-        }
-        className="input input-bordered w-full "
-      />
+      {value == "message" ? (
+        <textarea
+          className="textarea textarea-primary"
+          value={info[value]}
+          onChange={(e) =>
+            setInfo({
+              ...info,
+              [value]: e.target.value,
+            })
+          }
+          placeholder={placeholder}></textarea>
+      ) : (
+        <input
+          required={required}
+          type={type}
+          placeholder={placeholder}
+          value={info[value]}
+          onChange={(e) =>
+            setInfo({
+              ...info,
+              [value]: e.target.value,
+            })
+          }
+          className="input input-bordered w-full "
+        />
+      )}
     </div>
   );
 }

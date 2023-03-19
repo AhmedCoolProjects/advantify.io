@@ -54,7 +54,11 @@ const ContactUsPage: NextPage = () => {
           value="message"
         />
         <div />
-        <button className="btn w-full btn-primary">Send Message</button>
+        <button
+          disabled={!info.name || !info.email || !info.message}
+          className="btn w-full btn-primary">
+          Send Message
+        </button>
       </main>
     </div>
   );
