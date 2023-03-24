@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useState } from "react";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { FormInput } from "../../components";
 
 const ContactUsPage: NextPage = () => {
@@ -10,6 +11,23 @@ const ContactUsPage: NextPage = () => {
     phone: "",
     message: "",
   });
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const { scrollTop } = document.documentElement;
+
+      if (scrollTop === 0) {
+        router.push("/partners");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [router]);
   return (
     <div className="flex flex-col items-center justify-center py-2">
       <Head>

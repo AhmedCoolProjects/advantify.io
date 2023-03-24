@@ -29,7 +29,7 @@ const navbarItems = [
   },
 ];
 
-export const Navbar = () => {
+export const Navbar = ({activePage, setActivePage}: {activePage: number; setActivePage: (activePage: number) => void}) => {
   const router = useRouter();
   return (
     <div className="navbar top-0 z-30 !sticky bg-base-100">
