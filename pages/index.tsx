@@ -1,36 +1,48 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { FirstSection } from "../components";
 
 const Home: NextPage = () => {
+  
   const router = useRouter();
+  const currentPageRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const { scrollTop, scrollHeight, clientHeight } =
-        document.documentElement;
+  const handleScroll = () => {
+    if (currentPageRef.current) {
+      const rect = currentPageRef.current.getBoundingClientRect();
+      const pageYOffset = window.pageYOffset;
+      const distanceFromTop = rect.top + pageYOffset;
+      const distanceFromBottom =
+        currentPageRef.current.scrollHeight -
+        window.innerHeight -
+        window.pageYOffset;
 
-      if (scrollTop + clientHeight >= scrollHeight) {
+      if (Math.ceil(-distanceFromBottom) ===distanceFromTop) {
         router.push("/services");
       }
-    };
+    }
+  };
 
-    window.addEventListener("scroll", handleScroll);
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [router]);
+  }, []);
+
+
+  
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
+    <div className="flex flex-col items-center justify-center">
       <Head>
         <title>Welcome | ADVANTIFY.IO</title>
       </Head>
 
-      <main className="w-full">
-        {/* <Header /> */}
+      <main ref={currentPageRef} className="min-h-[130vh] w-full">
+      
         <FirstSection />
       </main>
     </div>

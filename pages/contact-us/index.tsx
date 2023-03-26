@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FormInput } from "../../components";
 
 const ContactUsPage: NextPage = () => {
@@ -11,29 +11,39 @@ const ContactUsPage: NextPage = () => {
     phone: "",
     message: "",
   });
+  
   const router = useRouter();
+  const currentPageRef = useRef<HTMLDivElement>(null);
+  let canNavigate = false;
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const { scrollTop } = document.documentElement;
+  const handleScroll = () => {
+    if (currentPageRef.current) {
+      const pageYOffset = window.pageYOffset;
+      if (pageYOffset > 0) {
+        canNavigate = true;
+      }
 
-      if (scrollTop === 0) {
+      if (pageYOffset === 0 && canNavigate) {
         router.push("/partners");
       }
-    };
+    }
+  };
 
-    window.addEventListener("scroll", handleScroll);
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [router]);
+  }, []);
+
   return (
-    <div className="flex flex-col items-center justify-center py-2">
+    <div ref={currentPageRef} className="flex flex-col items-center min-h-[130vh] justify-center py-2">
       <Head>
         <title>Contact us | ADVANTIFY.IO</title>
       </Head>
       <h1 className="text-4xl font-semibold my-8">Contact Us</h1>
+     
       <main className="w-11/12 sm:w-3/4 grid sm:grid-cols-2 grid-cols-1 gap-8">
         <FormInput
           info={info}

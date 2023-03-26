@@ -6,37 +6,50 @@ import { SecondSection } from "../../components";
 
 const ServicesPage: NextPage = () => {
   const router = useRouter();
-  const divRef = useRef(null);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const { scrollTop, scrollHeight, clientHeight } =
-        document.documentElement;
+  const currentPageRef = useRef<HTMLDivElement>(null);
+  let canNavigate = false;
 
-      if (scrollTop + clientHeight >= scrollHeight -1) {
+  const handleScroll = () => {
+    if (currentPageRef.current) {
+      const rect = currentPageRef.current.getBoundingClientRect();
+      const pageYOffset = window.pageYOffset;
+      const distanceFromTop = rect.top + pageYOffset;
+      const distanceFromBottom =
+        currentPageRef.current.scrollHeight -
+        window.innerHeight -
+        window.pageYOffset;
+
+      if (pageYOffset > 0) {
+        canNavigate = true;
+      }
+
+      if (Math.ceil(-distanceFromBottom) === distanceFromTop) {
         router.push("/clients");
       }
-      if (scrollTop === 0) {
+      if (pageYOffset === 0 && canNavigate) {
         router.push("/");
       }
-    };
+    }
+  };
 
-    window.addEventListener("scroll", handleScroll);
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [router]);
+  }, []);
 
   return (
     <div
-      className="flex min-h-screen flex-col overflow-y-scroll items-center justify-center py-2">
+      className="flex flex-col items-center justify-center">
       <Head>
         <title>Services | ADVANTIFY.IO</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="w-full">
+      <main ref={currentPageRef} className="min-h-[130vh] w-full">
         <SecondSection />
       </main>
     </div>
