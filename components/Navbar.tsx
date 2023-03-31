@@ -23,6 +23,11 @@ const navbarItems = [
     id: "partners",
   },
   {
+    title: "Blog",
+    link: "/blog",
+    id: "blog"
+  },
+  {
     title: "Contact Us",
     link: "/contact-us",
     id: "contact-us",

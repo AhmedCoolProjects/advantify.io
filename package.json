@@ -12,10 +12,13 @@
   },
   "dependencies": {
     "daisyui": "^2.51.3",
+    "keen-slider": "^6.8.5",
     "next": "latest",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-icons": "^4.8.0"
+    "react-icons": "^4.8.0",
+    "react-slick": "^0.29.0",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@types/node": "18.11.3",

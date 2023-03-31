@@ -1,14 +1,30 @@
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 export function FourthSection() {
+  const settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 2000,
+    cssEase: "linear",
+  };
   return (
-    <div className="grid px-12 py-8 grid-cols-1 sm:grid-cols-3 gap-8 w-full">
-      <PartnerCard image="/images/partner-2.png" title="EGW" />
-      <PartnerCard image="/images/partner-3.png" title="The Crypt Gallery" />
-      <PartnerCard
-        image="/images/partner-1.png"
-        title="Virtual Gallery Palma"
-      />
-      <PartnerCard image="/images/partner-4.png" title="NFT" />
-      <PartnerCard image="/images/partner-4.png" title="PayRue NFT" />
+    <div className="mt-12" >
+      <Slider {...settings}>
+        <PartnerCard image="/images/partner-2.png" title="EGW" />
+        <PartnerCard image="/images/partner-3.png" title="The Crypt Gallery" />
+        <PartnerCard
+          image="/images/partner-1.png"
+          title="Virtual Gallery Palma"
+        />
+        <PartnerCard image="/images/partner-4.png" title="NFT" />
+        <PartnerCard image="/images/partner-4.png" title="PayRue NFT" />
+      </Slider>
     </div>
   );
 }
