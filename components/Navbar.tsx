@@ -23,18 +23,13 @@ const navbarItems = [
     id: "partners",
   },
   {
-    title: "Blog",
-    link: "/blog",
-    id: "blog"
-  },
-  {
     title: "Contact Us",
     link: "/contact-us",
     id: "contact-us",
   },
 ];
 
-export const Navbar = ({activePage, setActivePage}: {activePage: number; setActivePage: (activePage: number) => void}) => {
+export const Navbar = () => {
   const router = useRouter();
   return (
     <div className="navbar top-0 z-30 !sticky bg-base-100">
@@ -86,7 +81,15 @@ export const Navbar = ({activePage, setActivePage}: {activePage: number; setActi
           ))}
         </ul>
       </div>
-      <div className="navbar-end">{/* <a className="btn">Something</a> */}</div>
+      <div className="navbar-end">
+        <ul className="menu menu-horizontal px-1">
+          <li className={router.pathname == "/blog" ? " btn-active" : ""}>
+            <Link href="/blog" passHref>
+              Blog
+            </Link>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };

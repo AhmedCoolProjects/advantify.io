@@ -27,7 +27,7 @@ export function FormInput({
       <label className="label">
         <span className="label-text">{label}</span>
       </label>
-      {value == "message" ? (
+      {value == "message-old" ? (
         <textarea
           className="textarea textarea-primary"
           value={info[value]}

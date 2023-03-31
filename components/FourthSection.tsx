@@ -1,12 +1,13 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import SectionTitle from "./SectionTitle";
 
 export function FourthSection() {
   const settings = {
     dots: true,
     infinite: true,
-    slidesToShow: 3,
+    slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
     speed: 2000,
@@ -14,8 +15,10 @@ export function FourthSection() {
     cssEase: "linear",
   };
   return (
-    <div className="mt-12" >
-      <Slider {...settings}>
+    <div className="mt-12 w-full flex flex-col items-center">
+      <SectionTitle firstTitle="Our" coloredTitle="Partners" secondTitle="" />
+
+      <Slider className="h-fit  w-11/12" {...settings}>
         <PartnerCard image="/images/partner-2.png" title="EGW" />
         <PartnerCard image="/images/partner-3.png" title="The Crypt Gallery" />
         <PartnerCard
@@ -31,16 +34,16 @@ export function FourthSection() {
 
 function PartnerCard({ image, title }: { image: string; title: string }) {
   return (
-    <div className="card card-compact w-full bg-base-100 shadow-xl">
+    <div className="card m-2 card-compact bg-base-100 shadow-xl">
       <figure>
         <img
           src={image}
           alt={title}
-          className="object-contain w-full max-h-[250px] "
+          className="object-contain w-full max-h-[100px] "
         />
       </figure>
       <div className="card-body !text-center">
-        <h2 className="w-full text-3xl font-semibold text-center">{title}</h2>
+        <h2 className="w-full text-xl font-semibold text-center">{title}</h2>
       </div>
     </div>
   );
