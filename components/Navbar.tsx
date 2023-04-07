@@ -1,35 +1,40 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-const navbarItems = [
+const navbarItems: {
+  label: string;
+  id: string;
+  noBlock?: boolean; // this to navigate the section with some plus top offset
+}[] = [
   {
-    title: "About",
-    link: "/",
+    label: "About",
     id: "about",
   },
   {
-    title: "Services",
-    link: "/services",
+    label: "Services",
     id: "services",
   },
   {
-    title: "Clients",
-    link: "/clients",
+    label: "Clients",
     id: "clients",
   },
   {
-    title: "Partners",
-    link: "/partners",
+    label: "Partners",
     id: "partners",
   },
   {
-    title: "Contact Us",
-    link: "/contact-us",
+    label: "Contact Us",
     id: "contact-us",
   },
 ];
 
-export const Navbar = () => {
+export const Navbar = ({
+  handleClickScroll,
+  currentSectionId,
+}: {
+  handleClickScroll: (itemId: string, noBlock?: boolean) => void;
+  currentSectionId: string;
+}) => {
   const router = useRouter();
   return (
     <div className="navbar top-0 z-30 !sticky bg-base-100">
@@ -55,11 +60,14 @@ export const Navbar = () => {
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
             {navbarItems.map((item) => (
               <li
-                className={router.pathname == item.link ? " btn-active" : ""}
-                key={item.id}>
-                <Link href={item.link} passHref>
-                  {item.title}
-                </Link>
+                className={
+                  currentSectionId == item.id
+                    ? " btn-active btn btn-ghost normal-case"
+                    : "btn btn-ghost normal-case"
+                }
+                key={item.id}
+                onClick={() => handleClickScroll(item.id, item.noBlock)}>
+                {item.label}
               </li>
             ))}
           </ul>
@@ -72,11 +80,14 @@ export const Navbar = () => {
         <ul className="menu menu-horizontal px-1">
           {navbarItems.map((item) => (
             <li
-              className={router.pathname == item.link ? " btn-active" : ""}
+              className={
+                currentSectionId == item.id
+                  ? " btn-active btn btn-ghost normal-case"
+                  : "btn btn-ghost normal-case"
+              }
+              onClick={() => handleClickScroll(item.id, item.noBlock)}
               key={item.id}>
-              <Link href={item.link} passHref>
-                {item.title}
-              </Link>
+              {item.label}
             </li>
           ))}
         </ul>

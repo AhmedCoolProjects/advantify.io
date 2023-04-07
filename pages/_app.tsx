@@ -4,7 +4,7 @@ import { Navbar } from "../components";
 import Head from "next/head";
 import Footer from "../components/Footer";
 import Modal from "../components/Modal";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -20,14 +20,35 @@ function MyApp({ Component, pageProps }: AppProps) {
     };
   }, []);
 
+  const [currentSection, setCurrentSection] = useState<string>("hero");
+
+  const handleClickScroll = (itemId: string) => {
+    const element = document.getElementById(itemId);
+    if (element) {
+      const elementTop =
+        element.getBoundingClientRect().top + window.pageYOffset;
+      window.scrollTo({
+        top: elementTop - 65,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen" data-theme="wireframe">
       <Head>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Navbar />
+      <Navbar
+        currentSectionId={currentSection}
+        handleClickScroll={handleClickScroll}
+      />
       <Modal />
-      <Component {...pageProps} />
+      <Component
+        currentSection={currentSection}
+        setCurrentSection={setCurrentSection}
+        {...pageProps}
+      />
       <Footer />
     </div>
   );

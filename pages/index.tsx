@@ -1,4 +1,3 @@
-import type { NextPage } from "next";
 import Head from "next/head";
 import {
   FifthSection,
@@ -9,8 +8,15 @@ import {
   ThirdSection,
 } from "../components";
 import ContactUs from "../components/ContactUs";
+import SectionLayout from "../components/SectionLayout";
 
-const Home: NextPage = () => {
+const Home = ({
+  currentSection,
+  setCurrentSection,
+}: {
+  currentSection: string;
+  setCurrentSection: React.Dispatch<React.SetStateAction<string>>;
+}) => {
   return (
     <div className="flex flex-col">
       <Head>
@@ -18,12 +24,37 @@ const Home: NextPage = () => {
       </Head>
 
       <main className="space-y-12">
-        <Header />
-        <FirstSection />
-        <SecondSection />
-        <ThirdSection />
-        <FourthSection />
-        <ContactUs />
+        <SectionLayout
+          currentSection={currentSection}
+          setCurrentSection={setCurrentSection}
+          id="about">
+          <Header />
+        </SectionLayout>
+        {/*  <FirstSection /> */}
+        <SectionLayout
+          currentSection={currentSection}
+          setCurrentSection={setCurrentSection}
+          id="services">
+          <SecondSection />
+        </SectionLayout>
+        <SectionLayout
+          currentSection={currentSection}
+          setCurrentSection={setCurrentSection}
+          id="clients">
+          <ThirdSection />
+        </SectionLayout>
+        <SectionLayout
+          currentSection={currentSection}
+          setCurrentSection={setCurrentSection}
+          id="partners">
+          <FourthSection />
+        </SectionLayout>
+        <SectionLayout
+          currentSection={currentSection}
+          setCurrentSection={setCurrentSection}
+          id="contact-us">
+          <ContactUs />
+        </SectionLayout>
       </main>
     </div>
   );
