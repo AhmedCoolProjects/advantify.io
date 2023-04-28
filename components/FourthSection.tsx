@@ -13,9 +13,29 @@ export function FourthSection() {
     speed: 2000,
     autoplaySpeed: 2000,
     cssEase: "linear",
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
   };
   return (
-    <div className="mt-12 w-full flex flex-col items-center">
+    <div className="mt-12 pb-10 w-full flex overflow-hidden bg-blue-200 flex-col items-center">
       <SectionTitle firstTitle="Our" coloredTitle="Partners" secondTitle="" />
 
       <Slider className="h-fit  w-11/12" {...settings}>
@@ -25,8 +45,7 @@ export function FourthSection() {
           image="/images/partner-1.png"
           title="Virtual Gallery Palma"
         />
-        <PartnerCard image="/images/partner-4.png" title="NFT" />
-        <PartnerCard image="/images/partner-4.png" title="PayRue NFT" />
+        <PartnerCard image="/images/partner-4.png" title="PayRue" />
       </Slider>
     </div>
   );
@@ -39,12 +58,9 @@ function PartnerCard({ image, title }: { image: string; title: string }) {
         <img
           src={image}
           alt={title}
-          className="object-contain w-full max-h-[100px] "
+          className="object-contain my-4 w-[100px] h-[100px] "
         />
       </figure>
-      <div className="card-body !text-center">
-        <h2 className="w-full text-xl font-semibold text-center">{title}</h2>
-      </div>
     </div>
   );
 }

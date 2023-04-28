@@ -7,18 +7,18 @@ import Modal from "../components/Modal";
 import { useEffect, useState } from "react";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      if (typeof window !== "undefined") {
-        const modalToggle = document.querySelector(".modal-toggle");
-        modalToggle.checked = true;
-      }
-    }, 5000);
+  // useEffect(() => {
+  //   const timeoutId = setTimeout(() => {
+  //     if (typeof window !== "undefined") {
+  //       const modalToggle = document.querySelector(".modal-toggle");
+  //       modalToggle.checked = true;
+  //     }
+  //   }, 5000);
 
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, []);
+  //   return () => {
+  //     clearTimeout(timeoutId);
+  //   };
+  // }, []);
 
   const [currentSection, setCurrentSection] = useState<string>("hero");
 
@@ -43,7 +43,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         currentSectionId={currentSection}
         handleClickScroll={handleClickScroll}
       />
-      <Modal />
+      {/* <Modal /> */}
       <Component
         currentSection={currentSection}
         setCurrentSection={setCurrentSection}

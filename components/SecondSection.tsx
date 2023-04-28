@@ -1,8 +1,23 @@
 import SectionTitle from "./SectionTitle";
 
+const firstData = [
+  "Web 3 digital strategy",
+  "Metaverse",
+  "AR",
+  "NFC",
+  "White label solutions for NFT Utilities through our partners",
+];
+
+const secondData = [
+  "Tokenization consultancy",
+  "Influencer Marketing strategy",
+  "Social Media Management",
+  "Project Development including Website, Marketplace and Smart Contract development",
+];
+
 export function SecondSection() {
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex bg-blue-200 pb-10 flex-col items-center">
       <SectionTitle
         firstTitle="Our Umbrella"
         coloredTitle="Of Services"
@@ -17,26 +32,20 @@ export function SecondSection() {
           />
         </div>
         <div className="flex flex-col items-center justify-center">
-          <div className="w-full sm:w-3/4 flex flex-col text-center sm:text-left items-center justify-center">
-            <ul className="text-2xl ">
-              <li className="list-disc list-item">Web 3 digital strategy</li>
-              <li className="list-disc list-item">Metaverse</li>
-              <li className="list-disc list-item">AR technology</li>
-              <li className="list-disc list-item">NFC technology</li>
-              <li className="list-disc list-item">
-                White label solutions for NFT Utilities through our partners
-              </li>
-              <li className="ml-[-32px] my-1">Other services:</li>
-              <li className="list-disc list-item">Tokenization consultancy</li>
-              <li className="list-disc list-item">
-                Influencer Marketing strategy
-              </li>
-              <li className="list-disc list-item">Social Media Manegment</li>
-              <li className="list-disc list-item">
-                Project Development including Website, Marketplace,
-                smartcontract development
-              </li>
-            </ul>
+          <div className="w-full sm:w-3/4 grid text-center items-center justify-center">
+            {firstData.map((item, ind) => (
+              <div
+                key={ind}
+                className="text-xl m-1  bg-base-200 p-2 rounded-lg">
+                {item}
+              </div>
+            ))}
+            <div className="divider text-lg">Other Services</div>
+            {secondData.map((item, ind) => (
+              <div key={ind} className="text-xl m-1 bg-base-200 p-2 rounded-lg">
+                {item}
+              </div>
+            ))}
           </div>
         </div>
       </div>

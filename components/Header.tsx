@@ -18,7 +18,7 @@ export function Header() {
       <div className="w-full p-4 flex flex-col items-left justify-center pt-12">
         <h1 className="text-4xl md:text-7xl font-extrabold tracking-tight text-black leading-tight ">
           Advantify is your <br />
-          <span className="text-teal-400">Web3</span> partner
+          <span className="text-[#1799E2]">Web3</span> partner
         </h1>
         <p className="text-lg w-11/12 md:text-xl text-left text-gray-600 mt-4">
           We are a boutique agency working with brands and artists launching a
