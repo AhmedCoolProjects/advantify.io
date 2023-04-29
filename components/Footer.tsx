@@ -31,7 +31,12 @@ export default function Footer() {
         <a className="link link-hover">Discord</a>
         <a className="link link-hover">Facebook</a>
         <a className="link link-hover">Twitter</a>
-        <a className="link link-hover">Instagram</a>
+        <a
+          href="https://www.instagram.com/advantify.io/"
+          target="_blank"
+          className="link link-hover">
+          Instagram
+        </a>
         <a className="link link-hover">LinkedIn</a>
       </div>
       <div>
