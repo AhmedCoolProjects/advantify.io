@@ -23,7 +23,7 @@ export function ThirdSection() {
         </div>
         <div className="relative flex flex-col space-y-3 items-center justify-center w-full h-full">
           <img
-            src="/images/first-section-image.png"
+            src="/images/lot.png"
             alt="First Section Image"
             className="object-cover w-[220px] h-[220px] rounded-full"
           />
